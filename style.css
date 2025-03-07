@@ -1,0 +1,211 @@
+@page {
+  size: Letter;
+  margin: 1cm 1cm 1cm 2cm;
+}
+
+* {
+  border: 1px solid rgb(255, 255, 255); /* Adds red borders around all elements */
+}
+
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.introduction {
+  border: 3px solid black;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  min-height: 5cm;
+  height: 950px; /* Dynamic height to allow continuation */
+  page-break-before: auto; /* Allow sections to continue */
+  page-break-after: auto; /* Avoid forcing new pages */
+  page-break-inside: auto; /* Ensure content can continue */
+}
+
+.introduction ul, ol {
+  page-break-inside: avoid;
+}
+.introduction li {
+  page-break-before: avoid;
+  display: block;
+  break-inside: avoid;
+}
+
+
+
+.page {
+    padding: 10px; /*Keep padding*/
+    height: 950px; /* Full viewport height */
+    box-sizing: border-box;
+}
+.underline {
+    text-decoration: underline;
+}
+
+.heading-center {
+    text-align: center;
+}
+
+.title-page, .certificate-page, .declaration-page, .acknowledgement-page, .abstract-page{
+  text-align: center;
+}
+
+h1, h2 {
+  font-weight: bold;
+}
+
+.content-top-spacing {
+  padding: 5em 0em 3em 0em;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.italic-text {
+  font-style: italic;
+}
+
+.uppercase-text {
+  text-transform: uppercase;
+}
+
+.bold-text {
+  font-weight: bold;
+}
+
+.redcolortext {
+  color: red;
+}
+
+
+.border {
+  position: relative;
+  content: "";
+  border: 3px solid black; /* Outer border */
+  
+}
+
+
+.border::before {
+  break-before: page;
+  content: "";
+  position: absolute;
+  top: -5px; /* Adjust spacing above */
+  left: -5px; /* Adjust spacing to the left */
+  right: -5px; /* Adjust spacing to the right */
+  bottom: -5px; /* Adjust spacing below */
+  border: 1px solid black; /* Inner border */
+  z-index: -1; /* Place behind the element */
+}
+
+
+/* Project Report page ----------------------------------------- */
+
+.title-page {
+  
+  padding-top: 3em;
+  padding-bottom: 5em;
+
+}
+
+
+/* -------------------------------------------------------------- */
+
+
+/*Certification Page --------------------------------------------- */
+
+
+
+
+/* Signature Rows */
+.signature-row {
+display: flex;
+justify-content: space-around; 
+margin: 2em 0; 
+}
+
+.signature-line {
+padding-top: 5em;
+text-align: center;
+flex: 1; /* Each signature gets equal width */
+}
+
+.signature-line p {
+margin: 0.5em 0; 
+font-weight: bold;
+}
+/*---------------------------------------------------------------- */
+
+/* Declaration */
+
+.signature {
+  padding: 3em 0em 3em 1em;
+  text-align: start;
+}
+
+.signature .bold-text{
+  padding-top: 3em;
+}
+
+/*----------------------------------------------------------------------------- */
+
+/* Abstract */
+
+
+
+/*----------------------------------------------------------------------------- */
+
+
+.table-container { /* New container for table border */
+  border: 1px solid black; /* Border around the entire table */
+  padding: 8px; /* Add some padding around the table content */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+    vertical-align: top;
+}
+
+th {
+    font-weight: bold;
+    text-align: center;
+}
+table, tr, td, th, div, p {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+.page-number{
+    text-align: right;
+}
+
+
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 10pt;
+    color: #333;
+}
+
+/* Page footer using @page rules */
+@page :left {
+    content: "Page " counter(page) " of " counter(pages);
+}
+@page :right {
+    content: "Page " counter(page) " of " counter(pages);
+}

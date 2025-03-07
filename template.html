@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Report</title>
+    <link rel="stylesheet" href="/content/sample_data/style.css">
+
+</head>
+<body>
+    <!-- Project Report page -->
+    <div class="page border title-page">
+        <h2 class="underline">A PROJECT REPORT</h2>
+        <p>On</p>
+        <h2>{{ project_name }}</h2>
+        <p class="italic-text">Submitted by</p>
+        <h2 class="redcolortext">{{ student_name }}</h2>
+        <p class="italic-text">in partial fulfillment for the award of the degree</p>
+        <p class="italic-text">of</p>
+        <h2 class="upercase-text">BACHELOR OF SCIENCE</h2>
+        <p>in</p>
+        <p >under the guidance of</p>
+        <h2 class="redcolortext">{{ guide_name }}</h2>
+        <p class="bold-text">Department of {{ department_name}}</p>
+        <p><img src="logo.png" alt="College Logo" style="width: 150px; height: auto;"/></p>
+        <h2 class="upercase-text">{{ college_name }}</h2>
+        <p class="bold-text">(Sem V / VI)</p>
+        <p class="bold-text">{{ academic_year }}</p>
+    </div>
+
+    <!-- Certificate page -->
+    <div class="page border certificate-page">
+        <div class="certificate-border">
+          <p><img src="logo.png" alt="College Logo" style="width: 150px; height: auto;"/></p>
+          <h2 class="upercase-text">{{ college_name }}</h2>
+          <p class="upercase-text">{{ college_address }}</p>
+          <h3 class="bold-text">Department of {{ department_name}}</h3>
+          <h2 class="underline">CERTIFICATE</h2>
+
+
+          <p class="content-top-spacing">
+              This is to certify that Mr./Ms. {{ student_name }} of <span class="bold-text">T.Y.B.Sc. (Sem V/VI)</span> class has
+              satisfactorily completed the Project <span class="bold-text">{{ project_name }}</span>, to be submitted in the partial fulfillment
+              for the award of <span class="bold-text">Bachelor of Science in {{ departmant_name}}</span> during the academic year <span class="bold-text">{{ academic_year }}</span>.
+          </p>
+    
+            <!-- First Row: Two Signatures -->
+        <div class="signature-row">
+            <div class="signature-line">
+                <p>___________________</p>
+                <p class="bold-text">Signature of Project Guide</p>
+            </div>
+            <div class="signature-line">
+                <p>___________________</p>
+                <p class="bold-text">Signature of Principal</p>
+            </div>
+        </div>
+
+        <!-- Second Row: Three Signatures -->
+        <div class="signature-row">
+            <div class="signature-line">
+                <p>___________________</p>
+                <p class="bold-text">Internal Examiner</p>
+            </div>
+            <div class="signature-line">
+                <p>___________________</p>
+                <p class="bold-text">College Seal</p>
+            </div>
+            <div class="signature-line">
+                <p>___________________</p>
+                <p class="bold-text">External Examiner</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Abstract -->
+    {% set items_per_page = 3 %}  <!-- Define items per page -->
+    {% for page_num in range((points | length + items_per_page - 1) // items_per_page) %}
+        <div class="page border abstract-page">
+            {% if page_num == 0 %}
+                <h2 class="underline heading-center" id="abstract-marker">ABSTRACT</h2>
+            {% endif %}
+            
+            <!-- Render points with markdown (user-defined Markdown content) -->
+            <div class="points-content">
+                {% for point in points[page_num * items_per_page:(page_num + 1) * items_per_page] %}
+                    <div style="padding-top: 1em;">{{ point | markdown }}</div>  
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+
+    <!-- Declaration Page -->
+    <div class="page border declaration-page">
+        <h2 class='underline'>DECLARATION</h2>
+        <p class="content-top-spacing">
+             I, {{ student_name }}, hereby declare that the project entitled
+            “<span class="bold-text">{{ project_name }}</span>” submitted in the partial fulfillment for the
+            award of <span class="bold-text">Bachelor of Science in {{ departmant_name}}</span> during the academic year <span class="bold-text">{{ academic_year }}</span> is my original work
+            and the project has not formed the basis for the award of any degree, associateship, fellowship, or any other
+            similar titles.
+        </p>
+        <div class="signature">
+          <p class="bold-text">
+            Signature of the Student:
+          </p>
+          <p class="bold-text">
+              Place: ____________
+          </p>
+          <p class="bold-text">
+              Date: ____________
+          </p>
+        </div>
+    </div>
+
+    <!-- Acknowledgement --> 
+    <div class="page border acknowledgement-page">
+      <h2 class="underline">ACKNOWLEDGEMENT</h2>
+      <p style="padding-top: 3em;">
+        It is a great pleasure that I present my venture in real-life application development 
+        in the form of project work. This project has been a very enriching experience in terms 
+        of programming skills and applying them to solve practical problems. I would like to 
+        extend my sincere gratitude to all those who helped me complete this project successfully.
+      </p>
+      <p>
+         I am happy to present this project work on the <strong>{{ project_name }}</strong>. The satisfactory completion of this project is due not 
+        only to my own efforts but also to the valuable guidance rendered by my guide and others, 
+        as well as the necessary infrastructure and facilities provided by my college.
+      </p>
+      <p>
+        First, I extend my sincere thanks to the Principal, 
+        <strong>{{ principal_name }}</strong>, and my guide 
+        <strong>{{ guide_name }}</strong> and 
+        the head of Department <strong>{{ hodName }}</strong> for their cooperation and guidance 
+        throughout the course. They provided support and briefed me from time to time, helping 
+        me overcome challenges and achieve the project’s goals.
+      </p>
+      <p style="padding-bottom: 20em;">
+        I also express my gratitude to all the faculty members of the 
+        <strong>{{ departmant_name }}</strong>, who imparted knowledge that proved valuable in the 
+        practical execution of this project. I would also like to thank those who helped me, 
+        either directly or indirectly, during the course of this work. Lastly, I would like to 
+        thank my friends for their constant support.
+      </p>
+    </div>
+
+    <!-- Table of Content --> 
+    
+    {% if introduction %}
+    <div class="introduction"> 
+        <h2 class="underline heading-center">INTRODUCTION</h2>
+        <span style="font-size:1px; color:rgb(255, 255, 255); padding: 0px">##introduction##</span>
+        <p class="introduction-content">{{ introduction | markdown }}</p>
+    </div>
+    {% else %}
+    <div>No introduction data provided.</div>
+    {% endif %}
+
+    {% if objectives %}
+    <div class="introduction"> 
+        <h2 class="underline heading-center">OBJECTIVES</h2>
+        <span style="font-size:1px; color:rgb(255, 255, 255); padding: 0px">##objectives##</span>
+        <p class="introduction-content">{{ objectives | markdown }}</p>
+    </div>
+    {% else %}
+    <div>No objectives data provided.</div>
+    {% endif %}
+
+    {% if scope %}
+    <div class="introduction"> 
+        <h2 class="underline heading-center">SCOPE</h2>
+        <span style="font-size:1px; color:rgb(255, 255, 255); padding: 0px">##scope##</span>
+        <p class="introduction-content">{{ scope | markdown }}</p>
+    </div>
+    {% else %}
+    <div>No scope data provided.</div>
+    {% endif %}
+    {% if methodology %}
+    <div class="introduction">
+        <h2 class="underline heading-center">METHODOLOGY</h2>
+        <span class="hidden-text" style="color: white; padding: 0px;">##methodology##</span>
+
+        {% if methodology.development_process %}
+            <h3>Development Process</h3>
+            <p>{{ methodology.development_process | markdown }}</p>
+        {% endif %}
+
+        {% if methodology.tools_platforms %}
+            <h3>Tools & Platforms Used</h3>
+            <p>{{ methodology.tools_platforms | markdown }}</p>
+        {% endif %}
+
+        {% if methodology.er_diagram %}
+            <h3>ER Diagram</h3>
+            <img src="file:///{{ methodology.er_diagram }}" alt="ER Diagram" class="image-style"/>
+        {% endif %}
+    </div>
+    {% else %}
+        <div>No methodology data provided.</div>
+    {% endif %}
+
+    {% if tools %}
+    <div class="introduction">
+        <h2 class="underline heading-center">TOOLS AND TECHNOLOGIES</h2>
+        <span class="hidden-text" style="color: white; padding: 0px;">##tools##</span>
+
+        <p class="introduction-content">{{ tools | markdown }}</p>
+    </div>
+    {% else %}
+        <div>No tools and technologies data provided.</div>
+    {% endif %}
+
+
+    {% if timeline %}
+        <div class="introduction">
+            <h2 class="underline heading-center">TIMELINE</h2>
+            <span class="hidden-text" style="color: white; padding: 0px;">##timeline##</span>
+
+            {% if timeline.gantt_chart %}
+                <h3>Gantt Chart</h3>
+                <img src="file:///{{ timeline.gantt_chart }}" alt="Gantt Chart" class="image-style"/>
+            {% endif %}
+
+            {% if timeline.milestones %}
+                <h3>Key Milestones</h3>
+                <p>{{ timeline.milestones | markdown }}</p>
+            {% endif %}
+        </div>
+    {% else %}
+        <div>No timeline data provided.</div>
+    {% endif %}
+    {% if resources %}
+    <div class="introduction"> 
+        <h2 class="underline heading-center">RESOURCES</h2>
+        <span style="font-size:1px; color:rgb(255, 255, 255); padding: 0px">##resources##</span>
+        <p class="introduction-content">{{ resources | markdown }}</p>
+    </div>
+    {% else %}
+    <div>No resources data provided.</div>
+    {% endif %}
+
+    {% if expected_outcomes %}
+        <div class="introduction">
+            <h2 class="underline heading-center">EXPECTED OUTCOMES</h2>
+            <span class="hidden-text" style="color: white; padding: 0px;">##expected_outcomes##</span>
+
+            {% if expected_outcomes.functional %}
+                <h3>Functional Outcomes</h3>
+                <p>{{ expected_outcomes.functional | markdown }}</p>
+            {% endif %}
+
+            {% if expected_outcomes.ui %}
+                <h3>User Interface Outcomes</h3>
+                <p>{{ expected_outcomes.ui | markdown }}</p>
+            {% endif %}
+
+            {% if expected_outcomes.project_structure %}
+                <h3>Project Structure & Source Code</h3>
+                <p>{{ expected_outcomes.project_structure | markdown }}</p>
+            {% endif %}
+        </div>
+    {% else %}
+        <div>No expected outcomes data provided.</div>
+    {% endif %}
+
+    {% if references %}
+    <div class="introduction"> 
+        <h2 class="underline heading-center">REFERENCES</h2>
+        <span style="font-size:1px; color:rgb(255, 255, 255); padding: 0px">##references##</span>
+        <p class="introduction-content">{{ references | markdown }}</p>
+    </div>
+    {% else %}
+    <div>No references data provided.</div>
+    {% endif %}
+</body>
+</html>

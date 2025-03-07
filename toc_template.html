@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/content/sample_data/style.css">
+</head>
+<body>
+    <div class="page">
+        <div class="table-container">
+          <table>
+            <thead>
+                <tr>
+                    <th>SR NO</th>
+                    <th>TABLE OF CONTENTS</th>
+                    <th class="page-number">PAG<br>ENO.</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-center">1</td>
+                    <td class="bold-text">Chapter 1: Introduction<br>1.1 Overview of the Textract Application<br>1.2 Purpose of the Project</td>
+                    <td class="text-center">{{ section_pages.get("introduction","N/A") }}</td>
+                </tr>
+                <tr>
+                    <td class="text-center">2</td>
+                    <td class="bold-text">Chapter 2: Objectives<br>2.1 Primary Objectives<br>2.2 Secondary Objectives</td>
+                    <td class="text-center">{{ section_pages.get("objectives","N/A") }}</td>
+                </tr>
+                <tr>
+                    <td class="text-center">3</td>
+                    <td class="bold-text">Chapter 3: Scope<br>3.1 Project Scope<br>3.2 Limitations</td>
+                    <td class="text-center">{{ section_pages.get("scope","N/A") }}</td>
+                </tr>
+                <tr>
+                    <td class="text-center">4</td>
+                    <td class="bold-text">Chapter 4: Methodology<br>4.1 Development Process<br>4.2 Tools and Platforms Used<br>4.3 ER diagram<br>4.4 Flow chart</td>
+                    <td class="text-center">{{ section_pages.get("methodology","N/A") }}</td>
+                </tr>
+                <tr>
+                    <td class="text-center">5</td>
+                    <td class="bold-text">Chapter 5: Tools and Technologies<br>
+                            {% for tool in tools_list %}
+                                {{ tool }}<br>
+                            {% endfor %}
+                    </td>
+                    <td class="text-center">{{ section_pages.get("tools","N/A") }}</td>
+                </tr>
+                <tr>
+                    <td class="text-center">6</td>
+                    <td class="bold-text">Chapter 6: Timeline<br>6.1 Gantt Chart<br>6.2 Key Milestones</td>
+                    <td class="text-center">{{ section_pages.get("timeline","N/A") }}</td>
+                </tr>
+                <tr>
+                    <td class="text-center">7</td>
+                    <td class="bold-text">Chapter 7: Resources<br>7.1 Personal Resources<br>7.2 Documentation and Learning Resources</td>
+                    <td class="text-center">{{ section_pages.get("resources","N/A") }}</td>
+                </tr>
+                <tr>
+                    <td class="text-center">8</td>
+                    <td class="bold-text">Chapter 8: Expected Outcomes<br>8.3 Project Structure,Source Code (With Application Screen Sample)</td>
+                    <td class="text-center">{{ section_pages.get("expected_outcomes","N/A") }}</td>
+                </tr>
+                 <tr>
+                    <td class="text-center">9</td>
+                    <td class="bold-text">Chapter 9: References</td>
+                    <td class="text-center">{{ section_pages.get("references","N/A") }}</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+</body>
+</html>

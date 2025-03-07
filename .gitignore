@@ -1,0 +1,19 @@
+# Python virtual environment
+.venv/
+.env
+
+# Python bytecode files
+__pycache__/
+*.pyc
+*.pyo
+
+# Streamlit config file
+.secrets/
+
+# IDE or editor-specific files (optional)
+.vscode/
+.idea/
+
+# System files (optional)
+.DS_Store
+Thumbs.db
