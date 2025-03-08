@@ -1,4 +1,7 @@
-from pathlib import Path
+import json
+
+# Simulated user input (Python code as a multi-line string)
+user_code = """from pathlib import Path
 import os
 from jinja2 import Environment, FileSystemLoader
 from weasyprint import HTML, CSS
@@ -54,16 +57,7 @@ def get_user_inputs(form_data):
     return inputs
 
 def generate_report_with_toc(data, main_template_path, output_pdf_path, css_path, toc_template_path):
-    """
-    Generates a PDF report with a dynamically generated table of contents.
-
-    Args:
-        data (dict): Data to be used in the report templates.
-        main_template_path (str): Path to the main report template.
-        output_pdf_path (str): Path to save the generated PDF.
-        css_path (str): Path to the CSS file for styling.
-        toc_template_path (str): Path to the table of contents template.
-    """
+   
     try:
         # 1. Load Templates and Render Main Report
         template_dir = os.path.dirname(main_template_path)
@@ -100,7 +94,7 @@ def generate_report_with_toc(data, main_template_path, output_pdf_path, css_path
 
 
 def _extract_section_pages(document, data):
-    """Extracts page numbers for specific sections in the document."""
+    
     tracked_sections = {"introduction", "objectives", "scope", "references", "resources"}
     section_pages = {}
     for page_number, page in enumerate(document.pages, start=1):
@@ -112,7 +106,24 @@ def _extract_section_pages(document, data):
     return section_pages
 
 def _reorder_pages_with_toc(main_pages, toc_page):
-    """Reorders pages in the document, inserting the TOC at the 6th position."""
+   
     ordered_pages = list(main_pages) #make a copy to avoid changing the original list.
     ordered_pages.insert(5, toc_page) #insert at the 6th position.
     return ordered_pages
+
+"""
+
+# Create a JSON object with the code stored as a string
+json_data = {
+    "code": user_code
+}
+
+# Convert to JSON string
+json_output = json.dumps(json_data, indent=4)
+
+# Save to a file (optional)
+with open("code_output.json", "w") as json_file:
+    json_file.write(json_output)
+
+# Print the JSON output
+print(json_output)

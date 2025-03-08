@@ -36,7 +36,20 @@ body {
   break-inside: avoid;
 }
 
-
+.introduction pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  break-inside: auto;
+  break-before: auto;
+  break-after: auto;
+  display: block;
+  padding: 5px;
+  border-radius: 5px;
+  margin-top: 0; /* Prevents unwanted extra spacing */
+}
 
 .page {
     padding: 10px; /*Keep padding*/

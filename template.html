@@ -22,7 +22,7 @@
         <p >under the guidance of</p>
         <h2 class="redcolortext">{{ guide_name }}</h2>
         <p class="bold-text">Department of {{ department_name}}</p>
-        <p><img src="logo.png" alt="College Logo" style="width: 150px; height: auto;"/></p>
+        <img src="{{ college_logo }}" alt="College Logo" style="width: 150px; height: auto;"/>
         <h2 class="upercase-text">{{ college_name }}</h2>
         <p class="bold-text">(Sem V / VI)</p>
         <p class="bold-text">{{ academic_year }}</p>
@@ -31,7 +31,7 @@
     <!-- Certificate page -->
     <div class="page border certificate-page">
         <div class="certificate-border">
-          <p><img src="logo.png" alt="College Logo" style="width: 150px; height: auto;"/></p>
+          <img src="{{ college_logo }}" alt="College Logo" style="width: 150px; height: auto;"/>
           <h2 class="upercase-text">{{ college_name }}</h2>
           <p class="upercase-text">{{ college_address }}</p>
           <h3 class="bold-text">Department of {{ department_name}}</h3>
@@ -75,21 +75,30 @@
 </div>
 
     <!-- Abstract -->
-    {% set items_per_page = 3 %}  <!-- Define items per page -->
+    <!-- {% set items_per_page = 3 %} 
     {% for page_num in range((points | length + items_per_page - 1) // items_per_page) %}
         <div class="page border abstract-page">
             {% if page_num == 0 %}
                 <h2 class="underline heading-center" id="abstract-marker">ABSTRACT</h2>
             {% endif %}
             
-            <!-- Render points with markdown (user-defined Markdown content) -->
+           
             <div class="points-content">
                 {% for point in points[page_num * items_per_page:(page_num + 1) * items_per_page] %}
                     <div style="padding-top: 1em;">{{ point | markdown }}</div>  
                 {% endfor %}
             </div>
         </div>
-    {% endfor %}
+    {% endfor %} -->
+    {% if abstract %}
+    <div class="introduction"> 
+        <h2 class="underline heading-center">ABSTRACT</h2>
+        <p class="introduction-content">{{ abstract | markdown }}</p>
+    </div>
+    {% else %}
+        <div>No introduction data provided.</div>
+    {% endif %}
+
 
     <!-- Declaration Page -->
     <div class="page border declaration-page">
@@ -193,7 +202,7 @@
 
         {% if methodology.er_diagram %}
             <h3>ER Diagram</h3>
-            <img src="file:///{{ methodology.er_diagram }}" alt="ER Diagram" class="image-style"/>
+            <img src="{{methodology.er_diagram}}" alt="ER Diagram" style="width: 100%;"/>
         {% endif %}
     </div>
     {% else %}
@@ -219,7 +228,7 @@
 
             {% if timeline.gantt_chart %}
                 <h3>Gantt Chart</h3>
-                <img src="file:///{{ timeline.gantt_chart }}" alt="Gantt Chart" class="image-style"/>
+                <img src="{{timeline.gantt_chart}}" alt="Gantt Chart" style="width: 100%;"/>
             {% endif %}
 
             {% if timeline.milestones %}
@@ -252,12 +261,15 @@
 
             {% if expected_outcomes.ui %}
                 <h3>User Interface Outcomes</h3>
-                <p>{{ expected_outcomes.ui | markdown }}</p>
+                 <img src="{{ expected_outcomes.ui}}" alt="ui" style="width: 100%;"/>
             {% endif %}
 
             {% if expected_outcomes.project_structure %}
                 <h3>Project Structure & Source Code</h3>
-                <p>{{ expected_outcomes.project_structure | markdown }}</p>
+                <img class="heading-center" src="{{ expected_outcomes.project_structure}}" alt="project structure" style="width: 20%;"/>
+                <pre>{{ expected_outcomes.source_code | markdown}}</pre>
+                
+
             {% endif %}
         </div>
     {% else %}

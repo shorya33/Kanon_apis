@@ -1,8 +1,9 @@
 from flask import Flask, request, jsonify, send_file
 from converter import generate_report_with_toc, get_user_inputs
 import json
-import base64
+import os
 import io
+import base64
 
 app = Flask(__name__)
 
@@ -11,30 +12,17 @@ def submit_form():
     try:
         # Get JSON data directly as a dictionary
         data = request.get_json()
+        form_data = data.get("form_data", {})
+        user_data = get_user_inputs(form_data)
 
         if not data:
             return jsonify({"error": "Invalid JSON data"}), 400
 
-        # Use the dictionary directly instead of json.loads()
-        form_data = data.get("form_data", {})
-        user_data = get_user_inputs(form_data)
-
-        # Process Base64 Image if present
-        if "logo_base64" in data:
-            logo_base64 = data["logo_base64"]
-            
-            # Decode base64 image
-            logo_bytes = base64.b64decode(logo_base64)
-            logo_io = io.BytesIO(logo_bytes)
-
-            # Add image bytes to user data
-            user_data["logo_bytes"] = logo_io.getvalue()
-
-        print(json.dumps(user_data, indent=4))
+        # Extract form data
 
         # Generate PDF in memory
         template_file = "template.html"
-        toc_template = "toc_template.html"
+        toc_template = "toc_template.html"      
         css_file = "style.css"
 
         pdf_io = io.BytesIO()  # Create an in-memory file object
