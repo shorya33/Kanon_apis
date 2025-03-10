@@ -261,7 +261,9 @@
 
             {% if expected_outcomes.ui %}
                 <h3>User Interface Outcomes</h3>
-                 <img src="{{ expected_outcomes.ui}}" alt="ui" style="width: 100%;"/>
+                 {% for img in expected_outcomes.ui %}
+                    <img src="{{ img }}" alt="ui" style="width: 100%;"/>
+                 {% endfor %}
             {% endif %}
 
             {% if expected_outcomes.project_structure %}
@@ -280,7 +282,9 @@
     <div class="introduction"> 
         <h2 class="underline heading-center">REFERENCES</h2>
         <span style="font-size:1px; color:rgb(255, 255, 255); padding: 0px">##references##</span>
-        <p class="introduction-content">{{ references | markdown }}</p>
+        {% for ref in references %}
+            <p class="introduction-content">{{  ref | markdown }}</p>
+        {% endfor %}
     </div>
     {% else %}
     <div>No references data provided.</div>

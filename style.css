@@ -15,7 +15,8 @@ body {
 }
 
 .introduction {
-  border: 3px solid black;
+  border: 3px solid black;;
+  outline: 3px double black; /* Outer double border */
   padding: 10px;
   margin-bottom: 10px;
   box-decoration-break: clone;
