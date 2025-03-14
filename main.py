@@ -1,11 +1,14 @@
 from flask import Flask, request, jsonify, send_file
 from converter import generate_report_with_toc, get_user_inputs
+from flask_cors import CORS
 import json
 import os
 import io
 import base64
 
 app = Flask(__name__)
+CORS(app, origins=["http://localhost:5173"])
+
 
 @app.route('/submit', methods=['POST'])
 def submit_form():
@@ -13,7 +16,9 @@ def submit_form():
         # Get JSON data directly as a dictionary
         data = request.get_json()
         form_data = data.get("form_data", {})
+        
         user_data = get_user_inputs(form_data)
+        
 
         if not data:
             return jsonify({"error": "Invalid JSON data"}), 400
@@ -37,4 +42,4 @@ def submit_form():
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))  # Use Render's PORT if available
-    app.run(host="0.0.0.0", port=port)
+    app.run(host="0.0.0.0", port=port, debug=True)

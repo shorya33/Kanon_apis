@@ -21,7 +21,7 @@
         <p>in</p>
         <p >under the guidance of</p>
         <h2 class="redcolortext">{{ guide_name }}</h2>
-        <p class="bold-text">Department of {{ department_name}}</p>
+        <p class="bold-text">Department of {{ department_name }}</p>
         <img src="{{ college_logo }}" alt="College Logo" style="width: 150px; height: auto;"/>
         <h2 class="upercase-text">{{ college_name }}</h2>
         <p class="bold-text">(Sem V / VI)</p>
@@ -41,7 +41,7 @@
           <p class="content-top-spacing">
               This is to certify that Mr./Ms. {{ student_name }} of <span class="bold-text">T.Y.B.Sc. (Sem V/VI)</span> class has
               satisfactorily completed the Project <span class="bold-text">{{ project_name }}</span>, to be submitted in the partial fulfillment
-              for the award of <span class="bold-text">Bachelor of Science in {{ departmant_name}}</span> during the academic year <span class="bold-text">{{ academic_year }}</span>.
+              for the award of <span class="bold-text">Bachelor of Science in {{ department_name }}</span> during the academic year <span class="bold-text">{{ academic_year }}</span>.
           </p>
     
             <!-- First Row: Two Signatures -->
@@ -91,7 +91,7 @@
         </div>
     {% endfor %} -->
     {% if abstract %}
-    <div class="introduction"> 
+    <div class="introduction abstract-page"> 
         <h2 class="underline heading-center">ABSTRACT</h2>
         <p class="introduction-content">{{ abstract | markdown }}</p>
     </div>
@@ -106,7 +106,7 @@
         <p class="content-top-spacing">
              I, {{ student_name }}, hereby declare that the project entitled
             “<span class="bold-text">{{ project_name }}</span>” submitted in the partial fulfillment for the
-            award of <span class="bold-text">Bachelor of Science in {{ departmant_name}}</span> during the academic year <span class="bold-text">{{ academic_year }}</span> is my original work
+            award of <span class="bold-text">Bachelor of Science in {{ department_name }}</span> during the academic year <span class="bold-text">{{ academic_year }}</span> is my original work
             and the project has not formed the basis for the award of any degree, associateship, fellowship, or any other
             similar titles.
         </p>
@@ -141,7 +141,7 @@
         First, I extend my sincere thanks to the Principal, 
         <strong>{{ principal_name }}</strong>, and my guide 
         <strong>{{ guide_name }}</strong> and 
-        the head of Department <strong>{{ hodName }}</strong> for their cooperation and guidance 
+        the head of Department <strong>{{ hod_name }}</strong> for their cooperation and guidance 
         throughout the course. They provided support and briefed me from time to time, helping 
         me overcome challenges and achieve the project’s goals.
       </p>
@@ -262,14 +262,15 @@
             {% if expected_outcomes.ui %}
                 <h3>User Interface Outcomes</h3>
                  {% for img in expected_outcomes.ui %}
-                    <img src="{{ img }}" alt="ui" style="width: 100%;"/>
+                    <img src="{{ img }}" alt="UI Image" style="width: 100%; max-width: 800px; height: auto; padding: 2px; display: block;" />
                  {% endfor %}
             {% endif %}
 
             {% if expected_outcomes.project_structure %}
-                <h3>Project Structure & Source Code</h3>
+                <h3>Project Structure</h3>
                 <img class="heading-center" src="{{ expected_outcomes.project_structure}}" alt="project structure" style="width: 20%;"/>
-                <pre>{{ expected_outcomes.source_code | markdown}}</pre>
+                <h3>Source Code</h3>
+                <pre>{{ expected_outcomes.source_code | markdown | e }}</pre>
                 
 
             {% endif %}

@@ -74,19 +74,21 @@ def generate_report_with_toc(data, main_template_path, output_pdf_path, css_path
 
         # 2. Load CSS and Render Main Report to PDF
         css = CSS(filename=css_path)
-        main_document = HTML(string=rendered_main_html).render(stylesheets=[css])
+        main_document = HTML(string=rendered_main_html).render(stylesheets=[css], presentational_hints=True)
 
         # 3. Extract Section Page Numbers
         section_page_map = _extract_section_pages(main_document, data)
         # 4. Render Table of ContentsS
         toc_data = {
+            "project_name": data['project_name'],
             "section_pages": section_page_map,
             "tools_list": data["tools_list"]
         }
+        print(toc_data)
 
         toc_template = env.get_template(os.path.basename(toc_template_path))
         rendered_toc_html = toc_template.render(toc_data)
-        toc_document = HTML(string=rendered_toc_html).render(stylesheets=[css])
+        toc_document = HTML(string=rendered_toc_html).render(stylesheets=[css], presentational_hints=True)
 
         # 5. Combine Pages and Save PDF
         ordered_pages = _reorder_pages_with_toc(main_document.pages, toc_document.pages[0])
