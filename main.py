@@ -7,7 +7,7 @@ import io
 import base64
 
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:5173"])
+CORS(app, origins=["https://kanon-lovat.vercel.app"])
 
 
 @app.route('/submit', methods=['POST'])
